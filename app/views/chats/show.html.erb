@@ -1,0 +1,31 @@
+<head>
+<div id="chat-id" data-chat-id="<%= @chat.try(:chat_no) %>"></div>
+</head>
+
+<a href="../apps/index">Back</a>
+
+<br>
+<br>
+
+<%= form_tag("/apps/#{@app.access_token}/chats/#{@chat.chat_no}/messages" , method: :get) do %>
+  <%= label_tag :search_query , "search for Messages" %>
+  <%= text_field_tag :search_query, @q , autocomplete: 'off' %>
+  <% end %>
+
+
+  <div id="messages">
+      <% @chat.messages.each do |message| %>
+              <%= render 'messages/message', message: message  %>
+      <% end %>
+  </div>
+  
+  
+  <h2>Create a new message:</h2>
+  <%= form_with model: [ @chat, @chat.messages.build ] do |form| %>
+      <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+      <%= form.submit %>
+    </p>
+  <% end %>

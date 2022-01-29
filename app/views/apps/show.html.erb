@@ -1,0 +1,24 @@
+<head>
+<div id="app-id" data-app-id="<%= @app.try(:access_token) %>"></div>
+</head>
+
+<h1><%= @app.name %></h1>
+
+<a href="index">Back</a>
+<br>
+<br>
+
+<div id="chats">
+<table>
+<% @app.chats.each do |chat| %>
+  <%= render partial: "chats/chat",  locals: {chat: chat, access_token: @app.access_token} %>
+<% end %>
+</div>
+
+</table>
+
+<h2>Create a new chat:</h2>
+<%= form_with model: [ @app, @app.chats.build ] do |form| %>
+    <%= form.submit %>
+  </p>
+<% end %>

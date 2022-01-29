@@ -1,0 +1,14 @@
+<tr>
+  <td style="padding:10px"> <a href= "/apps/<%=access_token%>/chats/<%= chat.chat_no %>" > chat number
+    <%= chat.chat_no %> </td>
+    </a>
+    
+    <td>
+      <% if chat.messages_count==nil %>
+      <h3> total number of messages = 0 </h3>
+  <% else %>
+      <h3> total number of messages = <%= chat.messages_count %> </h3>
+  <% end %>
+  </td>
+
+  </tr>
